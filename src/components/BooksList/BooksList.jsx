@@ -15,10 +15,7 @@ const BookList = ({books, totalCount}) => {
                                   image={volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : ""}
                     /></div>
                 })}
-
             </div>
-
-
         </div>
     );
 };
