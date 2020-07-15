@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import c from "./BooksList.module.scss";
 import BookCard from "../BookCard/BookCard";
 
-const BookList = ({books, totalCount}) => {
+const BookList = ({books, totalCount, isFetching}) => {
     const [isSearchHappened, setIsSearchHappened] = useState(false);
 
     !isSearchHappened && books && setIsSearchHappened(true);
+
+    if (isFetching) return <span>LOADING...</span>
 
     return (
         <div className={c.container}>

@@ -8,3 +8,17 @@
   justify-content: center;
   height: 37px;
 }
+
+.selectorsWrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  & div {
+    margin-right: 20px;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+}
