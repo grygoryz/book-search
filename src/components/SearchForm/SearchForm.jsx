@@ -9,7 +9,7 @@ const SearchForm = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit} className={c.container}>
             <div className={c.searchWrapper}>
-                <Field name="search" component={Input} placeholder={"Search for books..."}/>
+                <Field name="search" component={Input} placeholder={"Search..."}/>
                 <SearchButton/>
             </div>
         </form>

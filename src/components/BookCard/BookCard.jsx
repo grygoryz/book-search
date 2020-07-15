@@ -9,7 +9,7 @@ const BookCard = ({title, authors, categories, image}) => {
             </div>
             {categories && <div className={c.categories}>{categories.map(c => <span>{c}</span>)}</div>}
             <div className={c.title}>{title}</div>
-            {authors && <div>{authors.map(author => <span>{author}</span>)}</div>}
+            {authors && <div>{authors.map(author => <span>{author} </span>)}</div>}
         </div>
     );
 };

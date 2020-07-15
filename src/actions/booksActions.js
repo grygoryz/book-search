@@ -10,7 +10,7 @@ export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumb
 export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize});
 export const setTotalBooksCount = (count) => ({type: SET_TOTAL_BOOKS_COUNT, count});
 
-export const getBooksList = (searchTerms) => async dispatch => {
+export const getBooksList = (searchTerms) => async (dispatch, getState) => {
     const {totalItems, items} = await googleBooksAPI.getBooksList(searchTerms);
 
     if (totalItems > 0) {

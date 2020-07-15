@@ -1,10 +1,7 @@
 import {SET_BOOKS, SET_CURRENT_PAGE, SET_PAGE_SIZE, SET_TOTAL_BOOKS_COUNT} from "../actions/booksActions";
 
-
 const initialState = {
-    booksList: [
-
-    ],
+    booksList: null,
     totalCount: 0,
     currentPage: 1,
     pageSize: 20

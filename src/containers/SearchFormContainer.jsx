@@ -7,7 +7,11 @@ import React from "react";
 const SearchFormContainer = ({getBooksList}) => {
 
     const onSubmit = (formData) => {
-        getBooksList(formData["search"]);
+        //{search, pageNumber, pageSize, targetFields, categories, sortingMethod} = formData;
+        const {search} = formData;
+        if (formData.search){
+            getBooksList(search);
+        }
     };
 
     return <SearchForm onSubmit={onSubmit}/>
