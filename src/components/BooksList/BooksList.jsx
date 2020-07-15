@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 import c from "./BooksList.module.scss";
 import BookCard from "../BookCard/BookCard";
+import Paginator from "../common/Paginator/Paginator";
 
-const BookList = ({books, totalCount, isFetching}) => {
+const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
     const [isSearchHappened, setIsSearchHappened] = useState(false);
 
     !isSearchHappened && books && setIsSearchHappened(true);
-
-    if (isFetching) return <span>LOADING...</span>
 
     return (
         <div className={c.container}>
@@ -16,16 +15,24 @@ const BookList = ({books, totalCount, isFetching}) => {
                 : <div className={c.count}>
                     {totalCount ? `Found ${totalCount} results` : "No results were found. Try another queries!"}
                 </div>}
-            <div className={c.grid}>
-                {books && books.map(({volumeInfo, id}) => {
-                    return  <div key={id} className={c.wrapper}>
-                        <BookCard title={volumeInfo.title}
-                                  authors={volumeInfo.authors}
-                                  categories={volumeInfo.categories}
-                                  image={volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : ""}
-                    /></div>
-                })}
-            </div>
+                {books && <div>
+                    <Paginator totalItemsCount={totalCount}
+                               currentPage={currentPage} pageSize={pageSize}
+                               portionSize={10} onPageChanged={(p) => requestNewPage(p)} />
+
+                    {isFetching
+                        ? <span>LOADING...</span>
+                        : <div className={c.grid}>
+                            {books.map(({volumeInfo, id}) => {
+                                return <div key={id} className={c.wrapper}>
+                                    <BookCard title={volumeInfo.title}
+                                              authors={volumeInfo.authors}
+                                              categories={volumeInfo.categories}
+                                              image={volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : null}
+                                    /></div>
+                            })}</div>}
+
+                </div>}
         </div>
     );
 };

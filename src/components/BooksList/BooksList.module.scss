@@ -1,8 +1,12 @@
+.container {
+  padding: 15px 0 90px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 30px;
-  margin-top: 20px;
+  padding: 20px 0 25px;
 }
 
 .wrapper{
@@ -24,6 +28,5 @@
 }
 
 .count {
-  padding-top: 10px;
   text-align: center;
 }

@@ -2,7 +2,7 @@ import {
     SET_BOOKS,
     SET_CURRENT_PAGE,
     SET_IS_FETCHING,
-    SET_PAGE_SIZE,
+    SET_PAGE_SIZE, SET_SEARCHING_OPTIONS,
     SET_TOTAL_BOOKS_COUNT
 } from "../actions/booksActions";
 
@@ -10,8 +10,9 @@ const initialState = {
     booksList: null,
     totalCount: 0,
     currentPage: 1,
-    pageSize: 20,
-    isFetching: false
+    pageSize: 10,
+    isFetching: false,
+    searchingOptions: null
 };
 
 export const booksReducer = (state = initialState, action) => {
@@ -30,6 +31,9 @@ export const booksReducer = (state = initialState, action) => {
         }
         case SET_IS_FETCHING: {
             return {...state, isFetching: action.value};
+        }
+        case SET_SEARCHING_OPTIONS: {
+            return {...state, searchingOptions: action.options};
         }
         default:
             return state;
