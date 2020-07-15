@@ -1,12 +1,86 @@
 .pagination{
-  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.numbersList{
+  padding: 0 8px;
+  display: flex;
 }
 
 .page{
   cursor: pointer;
-  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  transition: background-color 0.2s;
+  border-radius: 50%;
+  margin-right: 2px;
+  font-size: 14px;
+
+  &:hover{
+    background: #e4e4e4;
+  }
+}
+
+.page, .button{
+  transition: background-color 0.2s;
 }
 
 .currentPage{
-  font-weight: bold;
+  background: #e4e4e4;
+}
+
+.button {
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  &:disabled{
+    & span {
+      border-color: #c4c4c4;
+    }
+  }
+  
+  & span {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-style: solid;
+    border-color: #919191;
+    top: 50%; left: 50%;
+  }
+  
+  &:hover {
+    background-color: #efefef;
+  }
+}
+
+.prevButton{
+  & span {
+    border-right: 2px;
+    border-top: 2px;
+    transform: translate(-30%, -50%) rotate(45deg);
+  }
+}
+
+.nextButton{
+  & span {
+    border-left: 2px;
+    border-bottom: 2px;
+    transform: translate(-60%, -50%) rotate(45deg);
+  }
 }
