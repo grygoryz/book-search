@@ -2,10 +2,12 @@ import React from "react";
 import {useParams, useLocation, NavLink} from "react-router-dom"
 
 const BookPage = ({book}) => {
+    if (!book) return <div>LOADING...</div>
     return (
         <div>
-            <h1>Header</h1>
-            <NavLink to="/"><button>back</button></NavLink>
+            <NavLink to="/books">BACK</NavLink>
+            <h1>{book.volumeInfo.title}</h1>
+            <img src={book.volumeInfo.imageLinks.small} alt=""/>
         </div>
     );
 };

@@ -2,6 +2,9 @@ import {connect} from "react-redux";
 import BooksList from "../components/BooksList/BooksList";
 import {requestNewPage} from "../actions/booksActions";
 import React from "react";
+import {Redirect} from "react-router-dom";
+
+
 
 const BooksListContainer = (props) => {
 

@@ -11,7 +11,6 @@ const BookList = ({books, totalCount, isFetching, currentPage, pageSize, request
 
     return (
         <div className={c.container}>
-            <NavLink to="/book"><button>LINK to book</button></NavLink>
             {!isSearchHappened && isFetching && <div>LOADING...</div>}
             {!isSearchHappened
                 ? <div className={c.slogan}><span>Search!</span></div>

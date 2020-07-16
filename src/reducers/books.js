@@ -1,4 +1,5 @@
 import {
+    SET_BOOK,
     SET_BOOKS,
     SET_CURRENT_PAGE, SET_CURRENT_SEARCHING_OPTIONS,
     SET_IS_FETCHING, SET_PAGE_SIZE,
@@ -40,6 +41,9 @@ export const booksReducer = (state = initialState, action) => {
         }
         case SET_CURRENT_SEARCHING_OPTIONS: {
             return {...state, currentSearchingOptions: action.options};
+        }
+        case SET_BOOK: {
+            return {...state, book: action.payload};
         }
         default:
             return state;
