@@ -1,20 +1,20 @@
 import {connect} from "react-redux";
 import SearchForm from "../components/SearchForm/SearchForm";
-import {getBooksList} from "../actions/booksActions";
+import {requestBooks} from "../actions/booksActions";
 import React from "react";
 
 
-const SearchFormContainer = ({getBooksList}) => {
+const SearchFormContainer = ({requestBooks}) => {
 
     const onSubmit = (formData) => {
         if (formData.searchTerms){
-            getBooksList(formData);
+            requestBooks(formData);
         }
     };
 
     return <SearchForm onSubmit={onSubmit}/>
 };
 
-const dispatchProps = {getBooksList};
+const dispatchProps = {requestBooks};
 
 export default connect(null, dispatchProps)(SearchFormContainer)
