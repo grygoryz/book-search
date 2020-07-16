@@ -11,7 +11,8 @@ const initialState = {
     currentPage: 1,
     isFetching: false,
     pageSize: 10,
-    currentSearchingOptions: null
+    currentSearchingOptions: null,
+    book: null
     // searchingOptions: {
     //     searchTerms: null,
     //     pageSize: 10,

@@ -9,7 +9,6 @@ const instance = axios.create({
 });
 
 export const googleBooksAPI = {
-
     getBooksList({searchTerms, pageNumber = 1, pageSize = 10, sortingMethod = "relevance", categories = "all"}) {
         const startIndex = (pageNumber - 1) * pageSize;
 
@@ -22,5 +21,10 @@ export const googleBooksAPI = {
 
         return instance.get(`?q=${searchTerms}${categories !== "all" ? `+subject:${categories}` : ""}`, {params})
             .then(res => res.data);
+    },
+    getBook(bookId) {
+
+        return instance.get(`/${bookId}`, DEFAULT_PARAMS)
+            .then(res => res.data)
     }
 };

@@ -46,4 +46,4 @@ const SearchForm = ({handleSubmit}) => {
     );
 };
 
-export default reduxForm({form: "search"})(SearchForm);
+export default reduxForm({form: "searchForm"})(SearchForm);

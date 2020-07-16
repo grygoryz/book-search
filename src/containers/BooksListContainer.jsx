@@ -1,6 +1,12 @@
 import {connect} from "react-redux";
 import BooksList from "../components/BooksList/BooksList";
 import {requestNewPage} from "../actions/booksActions";
+import React from "react";
+
+const BooksListContainer = (props) => {
+
+    return <BooksList {...props} />
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -14,4 +20,4 @@ const mapStateToProps = (state) => {
 
 const dispatchProps = {requestNewPage};
 
-export default connect(mapStateToProps, dispatchProps)(BooksList)
+export default connect(mapStateToProps, dispatchProps)(BooksListContainer)

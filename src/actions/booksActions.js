@@ -1,5 +1,7 @@
 import {googleBooksAPI} from "../api/api";
 
+// rename books -> booksList
+
 export const SET_BOOKS = "SET_BOOKS";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const SET_PAGE_SIZE = "SET_PAGE_SIZE";
@@ -7,12 +9,16 @@ export const SET_TOTAL_BOOKS_COUNT = "SET_TOTAL_BOOKS_COUNT";
 export const SET_IS_FETCHING = "SET_IS_FETCHING";
 export const SET_CURRENT_SEARCHING_OPTIONS = "SET_CURRENT_SEARCHING_OPTIONS";
 
+export const SET_BOOK = "SET_BOOK";
+
 export const setBooks = (payload) => ({type: SET_BOOKS, payload});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber});
 export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize});
 export const setTotalBooksCount = (count) => ({type: SET_TOTAL_BOOKS_COUNT, count});
 export const setIsFetching = (value) => ({type: SET_IS_FETCHING, value});
 export const setCurrentSearchingOptions = (options) => ({type: SET_CURRENT_SEARCHING_OPTIONS, options});
+
+export const setBook = (payload) => ({type: SET_BOOK, payload});
 
 export const requestBooks = options => async dispatch => {
     await withFetchingSwitching(dispatch, async () => {
@@ -48,6 +54,14 @@ export const requestNewPage = pageNumber => async (dispatch, getState) => {
         dispatch(setCurrentPage(pageNumber));
         dispatch(setBooks(items));
     });
+};
+
+export const requestBook = bookId => async dispatch => {
+    await withFetchingSwitching(dispatch, async () => {
+        const response = await googleBooksAPI.getBook(bookId);
+
+        dispatch(setBook(response));
+    })
 };
 
 const withFetchingSwitching = async (dispatch, func) => {

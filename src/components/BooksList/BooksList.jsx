@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import c from "./BooksList.module.scss";
 import BookCard from "../BookCard/BookCard";
 import Paginator from "../common/Paginator/Paginator";
+import {NavLink} from "react-router-dom";
 
 const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
     const [isSearchHappened, setIsSearchHappened] = useState(false);
@@ -10,6 +11,7 @@ const BookList = ({books, totalCount, isFetching, currentPage, pageSize, request
 
     return (
         <div className={c.container}>
+            <NavLink to="/book"><button>LINK to book</button></NavLink>
             {!isSearchHappened && isFetching && <div>LOADING...</div>}
             {!isSearchHappened
                 ? <div className={c.slogan}><span>Search!</span></div>
@@ -29,6 +31,7 @@ const BookList = ({books, totalCount, isFetching, currentPage, pageSize, request
                                           authors={volumeInfo.authors}
                                           categories={volumeInfo.categories}
                                           image={volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : null}
+                                          id={id}
                                 /></div>
                         })}</div>}
             </div>}

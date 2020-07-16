@@ -1,16 +1,21 @@
 import React from "react";
 import c from "./BookCard.module.scss";
 import coverFallback from "../../assets/book-cover-fallback.png"
+import {NavLink} from "react-router-dom";
 
-const BookCard = ({title, authors, categories, image}) => {
+const BookCard = ({title, authors, categories, image, id}) => {
     return (
         <div className={c.container}>
+            <NavLink to={`/book/${id}`}>
             <div className={c.imageWrapper}>
                 <img src={image ? image : coverFallback} alt=""/>
             </div>
+            </NavLink>
             {categories && <div className={c.categories}>{categories.map(c => <span>{c}</span>)}</div>}
-            <div className={c.title}>{title}</div>
-            {authors && <div>{authors.map(author => <span>{author} </span>)}</div>}
+            <NavLink className={c.title} to={`/book/${id}`}>
+                {title}
+            </NavLink>
+            {authors && <div className={c.authors}>{authors.map(author => <span>{author} </span>)}</div>}
         </div>
     );
 };
