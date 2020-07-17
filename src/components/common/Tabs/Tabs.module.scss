@@ -28,17 +28,9 @@
     transition: .3s;
   }
 
-  &:hover{
+  &:hover, &_active{
     opacity: 1;
     &:after{
-      width: 100%;
-      left: 0;
-    }
-  }
-
-  &_active {
-    opacity: 1;
-    &:after {
       width: 100%;
       left: 0;
     }
@@ -47,6 +39,6 @@
 
 .tabContent {
   border: 1px solid #e1e1e1;
-  padding: 15px 10px 10px;
+  min-height: 200px;
 }
 

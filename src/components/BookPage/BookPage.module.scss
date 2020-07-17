@@ -13,19 +13,40 @@
   text-decoration: none;
   color: black;
   height: 50px;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 300;
   display: flex;
   align-items: center;
   padding: 0 10px 0 60px;
   border-right: 1px solid #e1e1e1;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    transition: 0.2s;
+  }
+
+  &:hover {
+    &::after {
+      left: 25px;
+    }
+  }
 }
 
 .content {
   display: flex;
 }
 
-.pictureWrapper {
+.picture {
   flex-basis: 45%;
   background-color: #f3f2f1;
   display: flex;
@@ -33,7 +54,7 @@
   padding: 50px 0;
 
   & img {
-    box-shadow: 14px 15px 15px -7px rgba(0,0,0,0.4);
+    box-shadow: 14px 15px 15px -7px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -62,4 +83,34 @@
   & span {
     text-decoration: underline;
   }
+}
+
+.description, .characteristic {
+  padding: 15px;
+}
+
+.description {
+  line-height: 1.5;
+}
+
+.characteristic {
+
+  & div {
+    margin-bottom: 10px;
+  }
+
+  & span {
+    font-weight: 600;
+  }
+}
+
+.fallback {
+  padding: 20px;
+  color: gray;
+}
+
+.buttonWrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
 }

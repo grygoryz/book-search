@@ -2,13 +2,6 @@ import React, {useState} from "react";
 import c from "./Tabs.module.scss";
 import cn from "classnames"
 
-// type Item = {
-//      title: string,
-//     content: element
-//  }
-
-// items = Array<Item>
-
 const Tabs = ({items}) => {
     const [active, setActive] = useState(0);
 
