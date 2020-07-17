@@ -7,11 +7,10 @@ import {Route, Switch, useLocation} from "react-router-dom";
 import BookPageContainer from "./containers/BookPageContainer";
 import EntryPage from "./components/EntryPage/EntryPage";
 
-// потом вынести в MainPage (or SearchPage)
+
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
 // split books reducer into BooksListReducer and BookPageReducer ?
-// redirect from booksList to "/" if nothing is fetching
-// мб оставить header видимым всегда
+
 
 function App() {
     return (

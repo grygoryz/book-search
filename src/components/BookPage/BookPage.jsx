@@ -51,11 +51,13 @@ const BookPage = ({book}) => {
                     <Tabs items={[
                         {
                             title: "ABOUT",
-                            content: description
+                            content: description,
+                            id: 0
                         },
                         {
                             title: "CHARACTERISTIC",
                             content: characteristic || <div className={c.fallback}>Characteristics of the book is not found.</div>,
+                            id: 1
                         }
                     ]}/>
                     <div className={c.buttonWrapper}>

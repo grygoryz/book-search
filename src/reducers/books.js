@@ -14,12 +14,6 @@ const initialState = {
     pageSize: 10,
     currentSearchingOptions: null,
     book: null
-    // searchingOptions: {
-    //     searchTerms: null,
-    //     pageSize: 10,
-    //     sortingMethod: "relevance",
-    //     categories: "all"
-    // }
 };
 
 export const booksReducer = (state = initialState, action) => {
