@@ -2,21 +2,15 @@ import React, {useState} from "react";
 import c from "./BooksList.module.scss";
 import BookCard from "../BookCard/BookCard";
 import Paginator from "../common/Paginator/Paginator";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 
-const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
-    const [isSearchHappened, setIsSearchHappened] = useState(false);
-
-    !isSearchHappened && books && setIsSearchHappened(true);
+const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
 
     return (
         <div className={c.container}>
-            {!isSearchHappened && isFetching && <div>LOADING...</div>}
-            {!isSearchHappened
-                ? <div className={c.slogan}><span>Search!</span></div>
-                : <div className={c.count}>
-                    {totalCount ? `Found ${totalCount} results` : "No results were found. Try another queries!"}
-                </div>}
+            {isSearchHappened && <div className={c.count}>
+                {totalCount ? `Found ${totalCount} results` : "No results were found. Try another queries!"}
+            </div>}
             {books && <div>
                 <Paginator totalItemsCount={totalCount}
                            currentPage={currentPage} pageSize={pageSize}

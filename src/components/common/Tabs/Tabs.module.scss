@@ -1,0 +1,52 @@
+.tab {
+  //border: 1px solid #e1e1e1;
+  //border: 1px solid black;
+}
+
+.btn {
+  height: 50px;
+  min-width: 70px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  padding: 0 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: relative;
+  opacity: 0.5;
+  transition: 0.5s;
+
+  &:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 0;
+    background-color: black;
+    bottom: 10px;
+    left: 50%;
+    transition: .3s;
+  }
+
+  &:hover{
+    opacity: 1;
+    &:after{
+      width: 100%;
+      left: 0;
+    }
+  }
+
+  &_active {
+    opacity: 1;
+    &:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.tabContent {
+  border: 1px solid #e1e1e1;
+  padding: 15px 10px 10px;
+}
+

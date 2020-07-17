@@ -24,7 +24,7 @@ export const googleBooksAPI = {
     },
     getBook(bookId) {
 
-        return instance.get(`/${bookId}`, DEFAULT_PARAMS)
+        return instance.get(`/${bookId}`, {params: DEFAULT_PARAMS})
             .then(res => res.data)
     }
 };

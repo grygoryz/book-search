@@ -1,5 +1,7 @@
 .container {
   padding: 15px 0 90px;
+  // костыль. попробовать избавиться с помощью лоадера
+  min-height: 700px;
 }
 
 .grid {
@@ -14,18 +16,7 @@
   justify-content: center;
 }
 
-.slogan {
-  padding-top: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  & span {
-    font-size: 50px;
-    font-weight: bold;
-    color: #c4c4c4;
-  }
-}
 
 .count {
   text-align: center;

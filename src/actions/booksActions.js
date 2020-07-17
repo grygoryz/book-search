@@ -22,6 +22,7 @@ export const setBook = (payload) => ({type: SET_BOOK, payload});
 
 export const requestBooks = options => async dispatch => {
     await withFetchingSwitching(dispatch, async () => {
+
         const response = await googleBooksAPI.getBooksList(options);
         dispatch(setCurrentPage(1));
 

@@ -1,14 +1,27 @@
 import {connect} from "react-redux";
 import BooksList from "../components/BooksList/BooksList";
 import {requestNewPage} from "../actions/booksActions";
-import React from "react";
+import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
+import {formValueSelector} from "redux-form";
 
 
 
-const BooksListContainer = (props) => {
+const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
+    const [isSearchHappened, setIsSearchHappened] = useState(false);
 
-    return <BooksList {...props} />
+    !isSearchHappened && books && setIsSearchHappened(true);
+
+    if (!isFetching && !isSearchHappened) return <Redirect to="/"/>;
+
+    return <BooksList books={books}
+                      totalCount={totalCount}
+                      isFetching={isFetching}
+                      currentPage={currentPage}
+                      pageSize={pageSize}
+                      requestNewPage={requestNewPage}
+                      isSearchHappened={isSearchHappened}
+    />
 };
 
 const mapStateToProps = (state) => {
@@ -17,7 +30,7 @@ const mapStateToProps = (state) => {
         totalCount: state.books.totalCount,
         isFetching: state.books.isFetching,
         currentPage: state.books.currentPage,
-        pageSize: state.books.pageSize
+        pageSize: state.books.pageSize,
     }
 };
 

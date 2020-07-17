@@ -1,0 +1,12 @@
+.slogan {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    font-size: 50px;
+    font-weight: bold;
+    color: #c4c4c4;
+  }
+}

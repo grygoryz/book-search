@@ -5,7 +5,7 @@ import BooksListContainer from "./containers/BooksListContainer";
 import {useTransition, animated} from 'react-spring'
 import {Route, Switch, useLocation} from "react-router-dom";
 import BookPageContainer from "./containers/BookPageContainer";
-
+import EntryPage from "./components/EntryPage/EntryPage";
 
 // потом вынести в MainPage (or SearchPage)
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
@@ -16,13 +16,11 @@ import BookPageContainer from "./containers/BookPageContainer";
 function App() {
     return (
         <div>
+            <Header/>
             <Switch>
                 <Route path="/books/:bookId" render={() => <BookPageContainer/>}/>
-                <Route path="/">
-                    <Header/>
-                    <Route exact path="/" render={() => <h1>Entry Page. Search!</h1>}/>
-                    <Route to path="/books" render={() => <BooksListContainer/>}/>
-                </Route>
+                <Route to path="/books" render={() => <BooksListContainer/>}/>
+                <Route exact path="/" render={() => <EntryPage/>}/>
             </Switch>
         </div>
     );
