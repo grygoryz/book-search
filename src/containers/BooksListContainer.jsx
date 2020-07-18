@@ -3,9 +3,7 @@ import BooksList from "../components/BooksList/BooksList";
 import {requestNewPage} from "../actions/booksActions";
 import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
-import {formValueSelector} from "redux-form";
-
-
+import Preloader from "../components/common/Preloader/Preloader";
 
 const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
     const [isSearchHappened, setIsSearchHappened] = useState(false);
@@ -14,14 +12,16 @@ const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSiz
 
     if (!isFetching && !isSearchHappened) return <Redirect to="/"/>;
 
-    return <BooksList books={books}
-                      totalCount={totalCount}
-                      isFetching={isFetching}
-                      currentPage={currentPage}
-                      pageSize={pageSize}
-                      requestNewPage={requestNewPage}
-                      isSearchHappened={isSearchHappened}
-    />
+    return (
+            <BooksList books={books}
+                       totalCount={totalCount}
+                       isFetching={isFetching}
+                       currentPage={currentPage}
+                       pageSize={pageSize}
+                       requestNewPage={requestNewPage}
+                       isSearchHappened={isSearchHappened}
+            />
+       )
 };
 
 const mapStateToProps = (state) => {

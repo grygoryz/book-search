@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import c from "./Tabs.module.scss";
 import cn from "classnames"
 import { useSpring, animated, useTransition, config } from 'react-spring';
+import useResizeAware from 'react-resize-aware';
 
 // {items[active] && items[active].content}
 // items = [ {..., content}, {..., content} ]
@@ -13,7 +14,7 @@ const Tabs = ({items}) => {
         setActiveIndex(idx);
     };
 
-    const transitions = useTransition(items[activeIndex], item => item.id, {
+    const transitions = useTransition(items[activeIndex], item => item.title, {
         from: { opacity: 0, transform: "scale(0.9)" },
         enter: { opacity: 1, transform: "scale(1)" },
         leave: { opacity: 0, position: "absolute", transform: "scale(0.9)" },

@@ -20,6 +20,7 @@
   padding: 0 10px 0 60px;
   border-right: 1px solid #e1e1e1;
   position: relative;
+  transition: .2s;
 
   &::after {
     content: "";
@@ -32,10 +33,11 @@
     left: 30px;
     top: 50%;
     transform: translateY(-50%) rotate(45deg);
-    transition: 0.2s;
+    transition: .2s;
   }
 
   &:hover {
+    opacity: 0.9;
     &::after {
       left: 25px;
     }

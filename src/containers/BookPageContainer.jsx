@@ -12,7 +12,8 @@ const BookPageContainer = ({requestBook, book}) => {
        requestBook(bookId);
     }, [bookId]);
 
-    return <BookPage book={book} />
+
+    return <BookPage volumeInfo={book && book.volumeInfo}  />
 };
 
 const mapStateToProps = (state) => {

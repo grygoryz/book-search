@@ -5,16 +5,12 @@ import Tabs from "../common/Tabs/Tabs";
 import ButtonLink from "../common/ButtonLink/ButtonLink";
 import coverFallback from "../../assets/book-cover-fallback-big.png";
 
-const BookPage = ({book}) => {
-    if (!book) return <div>LOADING...</div>;
-
-    const {volumeInfo} = book;
-
+const BookPage = ({volumeInfo}) => {
+    if (!volumeInfo) return <div>LOADING...</div>;
+    
     const separateWithCommas = (list) => {
         const lastIdx = list.length - 1;
-        return list.map((item, idx) => {
-            return <><span>{item}</span>{idx !== lastIdx ? `, ` : ""}</>
-        } )
+        return list.map((item, idx) => (<><span>{item}</span>{idx !== lastIdx ? `, ` : ""} </>))
     };
 
     const formatDimensions = (data) => {
@@ -52,12 +48,10 @@ const BookPage = ({book}) => {
                         {
                             title: "ABOUT",
                             content: description,
-                            id: 0
                         },
                         {
                             title: "CHARACTERISTIC",
                             content: characteristic || <div className={c.fallback}>Characteristics of the book is not found.</div>,
-                            id: 1
                         }
                     ]}/>
                     <div className={c.buttonWrapper}>

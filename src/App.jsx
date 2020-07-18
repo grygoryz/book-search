@@ -10,7 +10,7 @@ import EntryPage from "./components/EntryPage/EntryPage";
 
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
 // split books reducer into BooksListReducer and BookPageReducer ?
-
+// добавить футер
 
 function App() {
     return (
