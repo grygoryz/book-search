@@ -1,56 +1,54 @@
 import {googleBooksAPI} from "../api/api";
 
-export const SET_BOOKS = "SET_BOOKS";
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-export const SET_PAGE_SIZE = "SET_PAGE_SIZE";
-export const SET_TOTAL_BOOKS_COUNT = "SET_TOTAL_BOOKS_COUNT";
 export const SET_IS_FETCHING = "SET_IS_FETCHING";
-export const SET_CURRENT_SEARCHING_OPTIONS = "SET_CURRENT_SEARCHING_OPTIONS";
 export const SET_BOOK = "SET_BOOK";
 
-export const setBooks = (payload) => ({type: SET_BOOKS, payload});
-export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber});
-export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize});
-export const setTotalBooksCount = (count) => ({type: SET_TOTAL_BOOKS_COUNT, count});
 export const setIsFetching = (value) => ({type: SET_IS_FETCHING, value});
-export const setCurrentSearchingOptions = (options) => ({type: SET_CURRENT_SEARCHING_OPTIONS, options});
 export const setBook = (payload) => ({type: SET_BOOK, payload});
 
+
+export const FETCH_BOOKS = "FETCH_BOOKS";
+export const FETCH_BOOKS_SUCCESS = "FETCH_BOOKS_SUCCESS";
+export const FETCH_BOOKS_FAILURE = "FETCH_BOOKS_FAILURE";
+export const FETCH_NEW_PAGE = "FETCH_NEW_PAGE";
+export const FETCH_NEW_PAGE_SUCCESS = "FETCH_NEW_PAGE_SUCCESS";
+export const FETCH_NEW_PAGE_FAILURE = "FETCH_NEW_PAGE_FAILURE";
+
+export const fetchBooks = () => ({type: FETCH_BOOKS});
+export const fetchBooksSuccess = (options, totalCount, books) => ({type: FETCH_BOOKS_SUCCESS, options, totalCount, books});
+export const fetchBooksFailure = (error) => ({type: FETCH_BOOKS_FAILURE, error});
+export const fetchNewPage = () => ({type: FETCH_NEW_PAGE});
+export const fetchNewPageSuccess = (pageNumber, books) => ({type: FETCH_NEW_PAGE_SUCCESS, pageNumber, books});
+export const fetchNewPageFailure = (error) => ({type: FETCH_NEW_PAGE_FAILURE, error});
+
+
 export const requestBooks = options => async dispatch => {
-    await withFetchingSwitching(dispatch, async () => {
+    dispatch(fetchBooks());
 
+    try {
         const response = await googleBooksAPI.getBooksList(options);
-        dispatch(setCurrentPage(1));
 
-        if (response.totalItems > 0) {
-            dispatch(requestBooksSuccess(response, options))
+        if (response.totalItems > 0){
+            dispatch(fetchBooksSuccess(options, response.totalItems, response.items))
         } else {
-            dispatch(requestBooksFailed());
+            dispatch(fetchBooksSuccess(null, 0, null))
         }
-    })
-};
-
-export const requestBooksSuccess = (response, options) => dispatch => {
-    dispatch(setCurrentSearchingOptions(options));
-    options.pageSize && dispatch(setPageSize(options.pageSize));
-    dispatch(setTotalBooksCount(response.totalItems));
-    dispatch(setBooks(response.items));
-};
-
-export const requestBooksFailed = () => dispatch => {
-    dispatch(setCurrentSearchingOptions(null));
-    dispatch(setTotalBooksCount(0));
-    dispatch(setBooks(null))
+    } catch (e) {
+        dispatch(fetchBooksFailure(e.message))
+    }
 };
 
 export const requestNewPage = pageNumber => async (dispatch, getState) => {
-    await withFetchingSwitching(dispatch, async () => {
-        const options = getState().books.currentSearchingOptions;
-        const {items} = await googleBooksAPI.getBooksList({...options, pageNumber});
+    dispatch(fetchNewPage());
 
-        dispatch(setCurrentPage(pageNumber));
-        dispatch(setBooks(items));
-    });
+    try {
+        const options = getState().books.currentSearchingOptions;
+        const response = await googleBooksAPI.getBooksList({...options, pageNumber});
+
+        dispatch(fetchNewPageSuccess(pageNumber, response.items))
+    } catch (e) {
+        dispatch(fetchNewPageFailure(e.message))
+    }
 };
 
 export const requestBook = bookId => async dispatch => {

@@ -30,7 +30,8 @@ const mapStateToProps = (state) => {
         totalCount: state.books.totalCount,
         isFetching: state.books.isFetching,
         currentPage: state.books.currentPage,
-        pageSize: state.books.pageSize,
+        pageSize: state.books.currentSearchingOptions.pageSize
+        //pageSize: state.books.pageSize,
     }
 };
 

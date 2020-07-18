@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom"
 import React from "react";
 
 
-const SearchFormContainer = ({requestBooks}) => {
+const SearchFormContainer = ({requestBooks, searchingOptions}) => {
     const history = useHistory();
 
     const onSubmit = (formData) => {
@@ -15,9 +15,16 @@ const SearchFormContainer = ({requestBooks}) => {
         }
     };
 
-    return <SearchForm onSubmit={onSubmit}/>
+    return <SearchForm initialValues={searchingOptions} onSubmit={onSubmit}/>
 };
 
 const dispatchProps = {requestBooks};
 
-export default connect(null, dispatchProps)(SearchFormContainer)
+const mapStateToProps = (state) => {
+
+    return {
+        searchingOptions: state.books.currentSearchingOptions
+    }
+}
+
+export default connect(mapStateToProps, dispatchProps)(SearchFormContainer)
