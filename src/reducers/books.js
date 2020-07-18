@@ -49,12 +49,12 @@ export const booksReducer = (state = initialState, action) => {
         case FETCH_NEW_PAGE_FAILURE: {
             return {...state, isFetching: false}
         }
-        case SET_IS_FETCHING: {
-            return {...state, isFetching: action.value};
-        }
-        case SET_BOOK: {
-            return {...state, book: action.payload};
-        }
+        // case SET_IS_FETCHING: {
+        //     return {...state, isFetching: action.value};
+        // }
+        // case SET_BOOK: {
+        //     return {...state, book: action.payload};
+        // }
         default:
             return state;
     }

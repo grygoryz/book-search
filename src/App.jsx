@@ -8,7 +8,8 @@ import BookPageContainer from "./containers/BookPageContainer";
 import EntryPage from "./components/EntryPage/EntryPage";
 
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
-// split books reducer into BooksListReducer and BookPageReducer ?
+// maybe rename books into booksList (and bookPage into book, but maybe not)
+// add error handling logic (showing pop up)
 // добавить футер
 
 function App() {

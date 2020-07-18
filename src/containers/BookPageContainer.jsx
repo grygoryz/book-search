@@ -2,8 +2,7 @@ import {connect} from "react-redux";
 import React, {useEffect} from "react";
 import BookPage from "../components/BookPage/BookPage";
 import {useParams} from "react-router-dom";
-import {requestBook} from "../actions/booksActions";
-
+import {requestBook} from "../actions/BookPageActions";
 
 const BookPageContainer = ({requestBook, book, isFetching}) => {
     let {bookId} = useParams();
@@ -18,8 +17,8 @@ const BookPageContainer = ({requestBook, book, isFetching}) => {
 
 const mapStateToProps = (state) => {
     return {
-        book: state.books.book,
-        isFetching: state.books.isFetching
+        book: state.bookPage.book,
+        isFetching: state.bookPage.isFetching
     }
 };
 
