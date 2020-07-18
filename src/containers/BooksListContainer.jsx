@@ -8,7 +8,7 @@ import {Redirect} from "react-router-dom";
 const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
     const [isSearchHappened, setIsSearchHappened] = useState(false);
 
-    !isSearchHappened && books && setIsSearchHappened(true);
+    books && !isSearchHappened && setIsSearchHappened(true);
 
     if (!isFetching && !isSearchHappened) return <Redirect to="/"/>;
 

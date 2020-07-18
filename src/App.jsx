@@ -7,20 +7,31 @@ import {Route, Switch, useLocation} from "react-router-dom";
 import BookPageContainer from "./containers/BookPageContainer";
 import EntryPage from "./components/EntryPage/EntryPage";
 
-
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
 // split books reducer into BooksListReducer and BookPageReducer ?
 // добавить футер
 
 function App() {
+    const location = useLocation();
+
+    const transitions = useTransition(location, location => location.pathname, {
+        from: {opacity: 0},
+        enter: {opacity: 1},
+        leave: {opacity: 0}
+    });
+
     return (
         <div>
             <Header/>
-            <Switch>
-                <Route path="/books/:bookId" render={() => <BookPageContainer/>}/>
-                <Route to path="/books" render={() => <BooksListContainer/>}/>
-                <Route exact path="/" render={() => <EntryPage/>}/>
-            </Switch>
+            {transitions.map(({item, props, key}) => (
+                <animated.div key={key} style={props}>
+                    <Switch location={item}>
+                        <Route path="/books/:bookId" render={() => <BookPageContainer/>}/>
+                        <Route to path="/books" render={() => <BooksListContainer/>}/>
+                        <Route exact path="/" render={() => <EntryPage/>}/>
+                    </Switch>
+                </animated.div>
+            ))}
         </div>
     );
 }

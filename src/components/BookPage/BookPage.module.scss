@@ -1,9 +1,12 @@
 .container {
   min-height: 100vh;
+  position: absolute;
+  width: 100%;
 }
 
 .preloader {
   margin-top: 100px;
+  height: 100vh;
 }
 
 .header {
