@@ -3,7 +3,7 @@ import BooksList from "../components/BooksList/BooksList";
 import {requestNewPage} from "../actions/booksActions";
 import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
-import Preloader from "../components/common/Preloader/Preloader";
+
 
 const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
     const [isSearchHappened, setIsSearchHappened] = useState(false);

@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {requestBook} from "../actions/booksActions";
 
 
-const BookPageContainer = ({requestBook, book}) => {
+const BookPageContainer = ({requestBook, book, isFetching}) => {
     let {bookId} = useParams();
 
     useEffect(() => {
@@ -13,12 +13,13 @@ const BookPageContainer = ({requestBook, book}) => {
     }, [bookId]);
 
 
-    return <BookPage volumeInfo={book && book.volumeInfo}  />
+    return <BookPage volumeInfo={book && book.volumeInfo} isFetching={isFetching} />
 };
 
 const mapStateToProps = (state) => {
     return {
-        book: state.books.book
+        book: state.books.book,
+        isFetching: state.books.isFetching
     }
 };
 

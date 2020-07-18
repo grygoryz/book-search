@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {useParams, useLocation, NavLink} from "react-router-dom"
 import c from "./BookPage.module.scss";
 import Tabs from "../common/Tabs/Tabs";
 import ButtonLink from "../common/ButtonLink/ButtonLink";
 import coverFallback from "../../assets/book-cover-fallback-big.png";
+import Preloader from "../common/Preloader/Preloader";
 
-const BookPage = ({volumeInfo}) => {
-    if (!volumeInfo) return <div>LOADING...</div>;
-    
+const BookPage = ({volumeInfo, isFetching}) => {
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+    if (isFetching || !volumeInfo) return <div className={c.preloader}><Preloader/></div>;
+
     const separateWithCommas = (list) => {
         const lastIdx = list.length - 1;
         return list.map((item, idx) => (<><span>{item}</span>{idx !== lastIdx ? `, ` : ""} </>))
@@ -38,7 +41,13 @@ const BookPage = ({volumeInfo}) => {
             <div className={c.header}><NavLink className={c.backButton} to="/books">Back</NavLink></div>
             <div className={c.content}>
                 <div className={c.picture}>
-                    <div><img src={volumeInfo.imageLinks ? volumeInfo.imageLinks.small : coverFallback} alt=""/></div>
+                    <div>
+                        {!isImageLoaded ? <svg width="300" height="420" viewBox="0 0 300 420">
+                            <rect width="300" height="420" rx="10" ry="10" fill="#CCC" /></svg> : null}
+                        <img style={!isImageLoaded ? {visibility: "hidden"} : {}}
+                             src={volumeInfo.imageLinks ? volumeInfo.imageLinks.small : coverFallback}
+                             onLoad={() => setIsImageLoaded(true)} alt=""/>
+                    </div>
                 </div>
                 <div className={c.info}>
                     <div className={c.category}>{volumeInfo.categories && separateWithCommas(volumeInfo.categories)}</div>
