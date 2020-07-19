@@ -6,5 +6,12 @@
     font-size: 20px;
     width: 500px;
     border: none;
+
+    @media (max-width: 700px) {
+      width: 350px;
+    }
+    @media (max-width: 415px) {
+      width: 260px;
+    }
   }
 }

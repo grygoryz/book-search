@@ -41,7 +41,6 @@ const SearchForm = ({handleSubmit}) => {
                     <option value="newest">newest</option>
                 </Field>
             </div>
-
         </form>
     );
 };

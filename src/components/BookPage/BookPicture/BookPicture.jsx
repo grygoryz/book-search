@@ -14,13 +14,12 @@ const BookPicture = ({imageLink}) => {
 
     return (
         <div className={c.container}>
-            <div>
+            <div className={c.mainWrapper}>
                 {!isImageLoaded ? placeholder : null}
                 <animated.div onMouseEnter={() => set({transform: "scale(1.1)"})}
                               onMouseLeave={() => set({transform: "scale(1)"})}
                               className={c.pictureWrapper}
                               style={props}>
-
                     <img style={!isImageLoaded ? {visibility: "hidden"} : {}}
                          src={imageLink ? imageLink : coverFallback}
                          onLoad={() => setIsImageLoaded(true)} alt=""/>

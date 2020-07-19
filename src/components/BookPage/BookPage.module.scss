@@ -1,12 +1,10 @@
 .container {
-  //min-height: 100vh;
   position: absolute;
   width: 100%;
 }
 
 .preloader {
   margin-top: 100px;
-  //height: 100vh;
 }
 
 .header {
@@ -53,6 +51,10 @@
 
 .content {
   display: flex;
+
+  @media (max-width: 850px) {
+    flex-flow: column;
+  }
 }
 
 

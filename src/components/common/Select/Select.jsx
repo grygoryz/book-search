@@ -1,11 +1,12 @@
 import React from "react";
 import c from "./Select.module.scss"
 
-const Select = ({value, children, title, input}) => {
+const Select = ({value, children, title, input, ...rest}) => {
+
     return (
-        <div>
+        <div className={c.container}>
             <span className={c.title}>{title}</span>
-            <select {...input} value={value} className={c.select}>
+            <select  {...input} value={value} className={c.select}>
                 {children}
             </select>
         </div>

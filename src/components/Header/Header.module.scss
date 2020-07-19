@@ -9,4 +9,8 @@
   color: white;
   font-size: 40px;
   margin: 0 0 35px;
+
+  @media (max-width: 450px) {
+    font-size: 35px;
+  }
 }

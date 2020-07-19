@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import c from "./BooksList.module.scss";
 import BookCard from "../BookCard/BookCard";
 import Paginator from "../common/Paginator/Paginator";
-import {NavLink, Redirect} from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
+    const width = useWindowWidth();
 
     if (isFetching) return <div className={c.loader}><Preloader/></div>;
 
@@ -27,7 +28,7 @@ const BookList = ({books, totalCount, isFetching, currentPage, pageSize, request
                     })}</div>
                 <Paginator totalItemsCount={totalCount}
                            currentPage={currentPage} pageSize={pageSize}
-                           portionSize={10} onPageChanged={(p) => requestNewPage(p)}/>
+                           portionSize={width > 450 ? 10 : 5} onPageChanged={(p) => requestNewPage(p)}/>
             </div>
         </div>
     );

@@ -5,11 +5,13 @@ import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
 import {hasSubmitSucceeded} from "redux-form";
 
-// проверить еще раз без !isFetching
+// разобраться с условиями. вся сложность идет из immediately history.push() after form submitting
 
-const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
+const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened, error}) => {
 
-    if (!isFetching && !isSearchHappened) return <Redirect to="/"/>;
+    const errorOccurred = !isFetching && !books;
+
+    if (!isSearchHappened || errorOccurred) return <Redirect to="/"/>;
 
     return (
             <BooksList books={books}
@@ -29,7 +31,8 @@ const mapStateToProps = (state) => {
         isFetching: state.booksList.isFetching,
         currentPage: state.booksList.currentPage,
         pageSize: state.booksList.currentSearchingOptions.pageSize,
-        isSearchHappened: hasSubmitSucceeded('searchForm')(state)
+        isSearchHappened: hasSubmitSucceeded('searchForm')(state),
+        error: state.app.error
     }
 };
 
