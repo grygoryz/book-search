@@ -18,7 +18,7 @@ function App() {
     const transitions = useTransition(location, location => location.pathname, {
         from: {opacity: 0 },
         enter: {opacity: 1 },
-        leave: {opacity: 0 }
+        leave: {opacity: 0 },
     });
 
     return (

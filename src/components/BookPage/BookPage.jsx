@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useParams, useLocation, NavLink} from "react-router-dom"
 import c from "./BookPage.module.scss";
 import Tabs from "../common/Tabs/Tabs";
@@ -8,6 +8,11 @@ import Preloader from "../common/Preloader/Preloader";
 
 const BookPage = ({volumeInfo, isFetching}) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        sectionRef.current && window.scrollTo(0, sectionRef.current.offsetTop)
+    }, [sectionRef]);
 
     if (isFetching || !volumeInfo) return <div className={c.preloader}><Preloader/></div>;
 
@@ -37,7 +42,7 @@ const BookPage = ({volumeInfo, isFetching}) => {
     </div>;
 
     return (
-        <div className={c.container}>
+        <div ref={sectionRef} className={c.container}>
             <div className={c.header}><NavLink className={c.backButton} to="/books">Back</NavLink></div>
             <div className={c.content}>
                 <div className={c.picture}>
