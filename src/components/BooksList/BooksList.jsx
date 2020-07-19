@@ -5,7 +5,7 @@ import Paginator from "../common/Paginator/Paginator";
 import {NavLink, Redirect} from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
 
-const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
+const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
 
     if (isFetching) return <div className={c.loader}><Preloader/></div>;
 

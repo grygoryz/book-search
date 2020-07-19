@@ -3,12 +3,11 @@ import BooksList from "../components/BooksList/BooksList";
 import {requestNewPage} from "../actions/BooksListActions";
 import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
+import {hasSubmitSucceeded} from "redux-form";
 
+// проверить еще раз без !isFetching
 
-const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
-    const [isSearchHappened, setIsSearchHappened] = useState(false);
-
-    books && !isSearchHappened && setIsSearchHappened(true);
+const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
 
     if (!isFetching && !isSearchHappened) return <Redirect to="/"/>;
 
@@ -19,7 +18,6 @@ const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSiz
                        currentPage={currentPage}
                        pageSize={pageSize}
                        requestNewPage={requestNewPage}
-                       isSearchHappened={isSearchHappened}
             />
        )
 };
@@ -31,6 +29,7 @@ const mapStateToProps = (state) => {
         isFetching: state.booksList.isFetching,
         currentPage: state.booksList.currentPage,
         pageSize: state.booksList.currentSearchingOptions.pageSize,
+        isSearchHappened: hasSubmitSucceeded('searchForm')(state)
     }
 };
 
