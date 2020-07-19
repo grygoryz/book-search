@@ -5,9 +5,7 @@ import {
     FETCH_NEW_PAGE,
     FETCH_NEW_PAGE_FAILURE,
     FETCH_NEW_PAGE_SUCCESS,
-    SET_BOOK,
-    SET_IS_FETCHING,
-} from "../actions/booksActions";
+} from "../actions/BooksListActions";
 
 const initialState = {
     booksList: null,
@@ -23,7 +21,7 @@ const initialState = {
     book: null
 };
 
-export const booksReducer = (state = initialState, action) => {
+export const booksListReducer = (state = initialState, action) => {
     switch(action.type) {
         case FETCH_BOOKS:
         case FETCH_NEW_PAGE:
@@ -40,21 +38,13 @@ export const booksReducer = (state = initialState, action) => {
                 currentPage: 1
             }
         }
-        case FETCH_BOOKS_FAILURE: {
-            return {...state, isFetching: false}
+        case FETCH_BOOKS_FAILURE:
+        case FETCH_NEW_PAGE_FAILURE: {
+            return {...state, isFetching: false, }
         }
         case FETCH_NEW_PAGE_SUCCESS: {
             return {...state, isFetching: false, booksList: action.books, currentPage: action.pageNumber}
         }
-        case FETCH_NEW_PAGE_FAILURE: {
-            return {...state, isFetching: false}
-        }
-        // case SET_IS_FETCHING: {
-        //     return {...state, isFetching: action.value};
-        // }
-        // case SET_BOOK: {
-        //     return {...state, book: action.payload};
-        // }
         default:
             return state;
     }

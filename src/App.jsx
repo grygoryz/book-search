@@ -2,24 +2,18 @@ import React from "react";
 import './App.module.scss';
 import Header from "./components/Header/Header";
 import BooksListContainer from "./containers/BooksListContainer";
-import {useTransition, animated} from 'react-spring'
-import {Route, Switch, useLocation} from "react-router-dom";
+import {animated} from 'react-spring'
+import {Route, Switch} from "react-router-dom";
 import BookPageContainer from "./containers/BookPageContainer";
 import EntryPage from "./components/EntryPage/EntryPage";
+import useRoutingTransition from "./hooks/useRoutingTransition";
 
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
-// maybe rename books into booksList (and bookPage into book, but maybe not)
 // add error handling logic (showing pop up)
 // добавить футер
 
 function App() {
-    const location = useLocation();
-
-    const transitions = useTransition(location, location => location.pathname, {
-        from: {opacity: 0 },
-        enter: {opacity: 1 },
-        leave: {opacity: 0 },
-    });
+    const transitions = useRoutingTransition();
 
     return (
         <div>

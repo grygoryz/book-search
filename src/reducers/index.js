@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
-import {booksReducer} from "./books";
+import {booksListReducer} from "./booksList";
 import {reducer as formReducer} from "redux-form";
 import {bookPageReducer} from "./bookPage";
 
 export const rootReducer = combineReducers({
-    books: booksReducer,
+    booksList: booksListReducer,
     bookPage: bookPageReducer,
     form: formReducer
 });

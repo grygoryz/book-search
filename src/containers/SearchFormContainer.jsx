@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import SearchForm from "../components/SearchForm/SearchForm";
-import {requestBooks} from "../actions/booksActions";
+import {requestBooks} from "../actions/BooksListActions";
 import {useHistory} from "react-router-dom"
 import React from "react";
 
@@ -21,7 +21,7 @@ const dispatchProps = {requestBooks};
 
 const mapStateToProps = (state) => {
     return {
-        searchingOptions: state.books.currentSearchingOptions
+        searchingOptions: state.booksList.currentSearchingOptions
     }
 };
 

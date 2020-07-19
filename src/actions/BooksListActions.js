@@ -34,7 +34,7 @@ export const requestNewPage = pageNumber => async (dispatch, getState) => {
     dispatch(fetchNewPage());
 
     try {
-        const options = getState().books.currentSearchingOptions;
+        const options = getState().booksList.currentSearchingOptions;
         const response = await googleBooksAPI.getBooksList({...options, pageNumber});
 
         dispatch(fetchNewPageSuccess(pageNumber, response.items))

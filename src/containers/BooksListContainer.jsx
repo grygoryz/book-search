@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import BooksList from "../components/BooksList/BooksList";
-import {requestNewPage} from "../actions/booksActions";
+import {requestNewPage} from "../actions/BooksListActions";
 import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
 
@@ -26,12 +26,11 @@ const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSiz
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books.booksList,
-        totalCount: state.books.totalCount,
-        isFetching: state.books.isFetching,
-        currentPage: state.books.currentPage,
-        pageSize: state.books.currentSearchingOptions.pageSize
-        //pageSize: state.books.pageSize,
+        books: state.booksList.booksList,
+        totalCount: state.booksList.totalCount,
+        isFetching: state.booksList.isFetching,
+        currentPage: state.booksList.currentPage,
+        pageSize: state.booksList.currentSearchingOptions.pageSize
     }
 };
 
