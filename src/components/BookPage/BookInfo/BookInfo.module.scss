@@ -1,0 +1,56 @@
+.container {
+  flex-basis: 55%;
+  padding: 50px;
+}
+
+.category {
+  font-size: 15px;
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+
+.title {
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.authors {
+  color: #878787;
+  font-weight: 300;
+  font-size: 15px;
+  margin-bottom: 30px;
+
+  & span {
+    text-decoration: underline;
+  }
+}
+
+.description, .characteristic {
+  padding: 15px;
+}
+
+.description {
+  line-height: 1.5;
+}
+
+.characteristic {
+
+  & div {
+    margin-bottom: 10px;
+  }
+
+  & span {
+    font-weight: 600;
+  }
+}
+
+.fallback {
+  padding: 20px;
+  color: gray;
+}
+
+.buttonWrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}

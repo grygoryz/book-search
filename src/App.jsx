@@ -7,16 +7,16 @@ import {Route, Switch} from "react-router-dom";
 import BookPageContainer from "./containers/BookPageContainer";
 import EntryPage from "./components/EntryPage/EntryPage";
 import useRoutingTransition from "./hooks/useRoutingTransition";
+import PopUp from "./components/common/PopUp/PopUp";
 
 // синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
-// add error handling logic (showing pop up)
-// добавить футер
 
-function App() {
+function App({error}) {
     const transitions = useRoutingTransition();
 
     return (
         <div>
+            {error && <PopUp content={error}/> }
             <Header/>
             {transitions.map(({item, props, key}) => (
                 <animated.div key={key} style={props}>

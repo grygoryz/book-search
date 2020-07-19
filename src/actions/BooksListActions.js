@@ -1,4 +1,5 @@
 import {googleBooksAPI} from "../api/api";
+import {handleError} from "./AppActions";
 
 export const FETCH_BOOKS = "FETCH_BOOKS";
 export const FETCH_BOOKS_SUCCESS = "FETCH_BOOKS_SUCCESS";
@@ -9,10 +10,10 @@ export const FETCH_NEW_PAGE_FAILURE = "FETCH_NEW_PAGE_FAILURE";
 
 export const fetchBooks = () => ({type: FETCH_BOOKS});
 export const fetchBooksSuccess = (options, totalCount, books) => ({type: FETCH_BOOKS_SUCCESS, options, totalCount, books});
-export const fetchBooksFailure = (error) => ({type: FETCH_BOOKS_FAILURE, error});
+export const fetchBooksFailure = () => ({type: FETCH_BOOKS_FAILURE});
 export const fetchNewPage = () => ({type: FETCH_NEW_PAGE});
 export const fetchNewPageSuccess = (pageNumber, books) => ({type: FETCH_NEW_PAGE_SUCCESS, pageNumber, books});
-export const fetchNewPageFailure = (error) => ({type: FETCH_NEW_PAGE_FAILURE, error});
+export const fetchNewPageFailure = () => ({type: FETCH_NEW_PAGE_FAILURE});
 
 export const requestBooks = options => async dispatch => {
     dispatch(fetchBooks());
@@ -26,7 +27,8 @@ export const requestBooks = options => async dispatch => {
             dispatch(fetchBooksSuccess(null, 0, null))
         }
     } catch (e) {
-        dispatch(fetchBooksFailure(e.message))
+        dispatch(fetchBooksFailure());
+        dispatch(handleError(e))
     }
 };
 
@@ -39,7 +41,8 @@ export const requestNewPage = pageNumber => async (dispatch, getState) => {
 
         dispatch(fetchNewPageSuccess(pageNumber, response.items))
     } catch (e) {
-        dispatch(fetchNewPageFailure(e.message))
+        dispatch(fetchNewPageFailure());
+        dispatch(handleError(e))
     }
 };
 

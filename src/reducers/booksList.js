@@ -12,13 +12,12 @@ const initialState = {
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
-    pageSize: 10,
     currentSearchingOptions: {
         pageSize: 10,
         category: "all",
         sortingMethod: "relevance"
     },
-    book: null
+    error: null
 };
 
 export const booksListReducer = (state = initialState, action) => {
@@ -38,12 +37,12 @@ export const booksListReducer = (state = initialState, action) => {
                 currentPage: 1
             }
         }
-        case FETCH_BOOKS_FAILURE:
-        case FETCH_NEW_PAGE_FAILURE: {
-            return {...state, isFetching: false, }
-        }
         case FETCH_NEW_PAGE_SUCCESS: {
             return {...state, isFetching: false, booksList: action.books, currentPage: action.pageNumber}
+        }
+        case FETCH_BOOKS_FAILURE:
+        case FETCH_NEW_PAGE_FAILURE: {
+            return {...state, isFetching: false}
         }
         default:
             return state;
