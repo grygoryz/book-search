@@ -8,7 +8,7 @@ const SearchFormContainer = ({requestBooks, searchingOptions}) => {
     const history = useHistory();
 
     const onSubmit = (formData) => {
-        if (formData.searchTerms){
+        if (formData.searchTerms) {
             requestBooks(formData);
             history.push("/books")
         }
@@ -17,12 +17,10 @@ const SearchFormContainer = ({requestBooks, searchingOptions}) => {
     return <SearchForm initialValues={searchingOptions} onSubmit={onSubmit}/>
 };
 
-const dispatchProps = {requestBooks};
-
 const mapStateToProps = (state) => {
     return {
         searchingOptions: state.booksList.currentSearchingOptions
     }
 };
 
-export default connect(mapStateToProps, dispatchProps)(SearchFormContainer)
+export default connect(mapStateToProps, {requestBooks})(SearchFormContainer)

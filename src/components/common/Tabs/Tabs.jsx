@@ -1,32 +1,29 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useState} from "react";
 import c from "./Tabs.module.scss";
 import cn from "classnames"
-import { useSpring, animated, useTransition, config } from 'react-spring';
-import useResizeAware from 'react-resize-aware';
-
-// {items[active] && items[active].content}
-// items = [ {..., content}, {..., content} ]
+import {animated, useTransition, config} from 'react-spring';
 
 const Tabs = ({items}) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const openTab = idx => {
-        setActiveIndex(idx);
-    };
+    const openTab = idx => setActiveIndex(idx);
 
     const transitions = useTransition(items[activeIndex], item => item.title, {
-        from: {opacity: 0, position: "absolute", transform: "scale(0.95)" },
-        enter: { opacity: 1, position: "static", transform: "scale(1)" },
-        leave: {opacity: 0, position: "absolute", transform: "scale(0.95)" },
+        from: {opacity: 0, position: "absolute", transform: "scale(0.95)"},
+        enter: {opacity: 1, position: "static", transform: "scale(1)"},
+        leave: {opacity: 0, position: "absolute", transform: "scale(0.95)"},
         config: config.wobbly,
     });
 
     return (
         <div className={c.tab}>
             {items.map((item, idx) => (
-                <button key={idx} className={cn(c.btn, {[c.btn_active]: idx === activeIndex})}
+                <button key={idx}
+                        className={cn(c.btn, {[c.btn_active]: idx === activeIndex})}
                         onClick={() => openTab(idx)}
-                >{item.title}</button>
+                >
+                    {item.title}
+                </button>
             ))}
             <div className={c.tabContent}>
                 {transitions.map(({item, props, key}) => {

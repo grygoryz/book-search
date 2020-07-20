@@ -19,7 +19,7 @@ export const googleBooksAPI = {
             maxResults: pageSize,
         };
 
-        return instance.get(`?=${searchTerms}${categories !== "all" ? `+subject:${categories}` : ""}`, {params})
+        return instance.get(`?q=${searchTerms}${categories !== "all" ? `+subject:${categories}` : ""}`, {params})
             .then(res => res.data);
     },
     getBook(bookId) {

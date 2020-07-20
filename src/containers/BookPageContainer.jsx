@@ -10,14 +10,14 @@ const BookPageContainer = ({requestBook, book, isFetching, error}) => {
     let {bookId} = useParams();
 
     useEffect(() => {
-       requestBook(bookId);
-    }, [bookId]);
+        requestBook(bookId);
+    }, [bookId, requestBook]);
 
     if (error) return <Redirect to="/books"/>;
 
     if (isFetching || !book) return <div className={c.preloader}><Preloader/></div>;
 
-    return <BookPage volumeInfo={book.volumeInfo} isFetching={isFetching} />
+    return <BookPage volumeInfo={book.volumeInfo} isFetching={isFetching}/>
 };
 
 const mapStateToProps = (state) => {
@@ -28,6 +28,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-const dispatchProps = {requestBook};
-
-export default connect(mapStateToProps, dispatchProps)(BookPageContainer)
+export default connect(mapStateToProps, {requestBook})(BookPageContainer)

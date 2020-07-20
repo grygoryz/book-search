@@ -2,7 +2,7 @@ import React from "react";
 
 export const separateWithCommas = (Component, list) => {
     const lastIdx = list.length - 1;
-    return list.map((item, idx) => (<><Component>{item}</Component>{idx !== lastIdx ? `, ` : ""} </>))
+    return list.map((item, idx) => (<React.Fragment key={idx}><Component>{item}</Component>{idx !== lastIdx ? `, ` : ""} </React.Fragment>))
 };
 
 export const formatDimensions = (data) => {
