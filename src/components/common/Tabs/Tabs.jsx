@@ -26,9 +26,9 @@ const Tabs = ({items}) => {
                 </button>
             ))}
             <div className={c.tabContent}>
-                {transitions.map(({item, props, key}) => {
-                    return <animated.div key={key} style={props}>{item.content}</animated.div>
-                })}
+                {transitions.map(({item, props, key}) => (
+                    <animated.div key={key} style={props}>{item.content}</animated.div>
+                ))}
             </div>
         </div>
     );
