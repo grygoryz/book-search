@@ -1,11 +1,12 @@
-import {FETCH_BOOK, FETCH_BOOK_FAILURE, FETCH_BOOK_SUCCESS} from "../actions/BookPageActions";
+import {ActionsType, FETCH_BOOK, FETCH_BOOK_FAILURE, FETCH_BOOK_SUCCESS} from "../actions/BookPageActions";
+import {VolumeResource} from "../api/api";
 
 const initialState = {
     isFetching: false,
-    book: null
+    book: null as VolumeResource | null
 };
 
-export const bookPageReducer = (state = initialState, action) => {
+export const bookPageReducer = (state = initialState, action: ActionsType): State => {
     switch(action.type) {
         case FETCH_BOOK: {
             return {...state, isFetching: true}
@@ -20,3 +21,5 @@ export const bookPageReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+type State = typeof initialState

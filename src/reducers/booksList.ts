@@ -5,7 +5,10 @@ import {
     FETCH_NEW_PAGE,
     FETCH_NEW_PAGE_FAILURE,
     FETCH_NEW_PAGE_SUCCESS,
+    ActionsType,
 } from "../actions/BooksListActions";
+import {VolumeResource} from "../api/api";
+import {SearchingOptions} from "../types/types";
 
 // export const Categories = [{label: "all", value: "all"}, {label: "ART", value: "art"}, {label: "BIOGRAPHY", value: "biography"},
 //     {label: "BUSINESS", value: "business"}, {label: "COMICS", value: "comics"}, {label: "COMPUTERS", value: "computers"},
@@ -18,19 +21,20 @@ import {
 // export const SortingMethods = ["relevance", "newest"];
 
 const initialState = {
-    booksList: null,
+    booksList: null as Array<VolumeResource> | null,
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
     currentSearchingOptions: {
+        searchTerms: null,
         pageSize: 10,
         category: "all",
         sortingMethod: "relevance"
-    },
+    } as SearchingOptions | null,
     error: null
 };
 
-export const booksListReducer = (state = initialState, action) => {
+export const booksListReducer = (state = initialState, action: ActionsType): State => {
     switch(action.type) {
         case FETCH_BOOKS:
         case FETCH_NEW_PAGE:
@@ -58,3 +62,5 @@ export const booksListReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+type State = typeof initialState
