@@ -26,6 +26,7 @@ const BooksListContainer: React.FC<PropsType> = ({books, totalCount, isFetching,
     )
 };
 
+// todo: pageSize is possibly null
 const mapStateToProps = (state: AppState) => {
     return {
         books: state.booksList.booksList,

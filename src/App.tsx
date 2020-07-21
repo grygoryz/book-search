@@ -9,9 +9,11 @@ import EntryPage from "./components/EntryPage/EntryPage";
 import useRoutingTransition from "./hooks/useRoutingTransition";
 import PopUp from "./components/common/PopUp/PopUp";
 
-// синхронизировать paginator с поиском (баг: с новым поиском пагинатор не перекручивается назад)
+type Props = {
+    error: string | null
+}
 
-function App({error}) {
+const App: React.FC<Props> = ({error}) => {
     const transitions = useRoutingTransition();
 
     return (
@@ -29,6 +31,6 @@ function App({error}) {
             ))}
         </div>
     );
-}
+};
 
 export default App;

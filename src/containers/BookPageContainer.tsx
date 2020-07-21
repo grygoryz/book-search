@@ -5,8 +5,10 @@ import {Redirect, useParams} from "react-router-dom";
 import {requestBook} from "../actions/BookPageActions";
 import c from "../components/BookPage/BookPage.module.scss";
 import Preloader from "../components/common/Preloader/Preloader";
+import {VolumeResource} from "../api/api";
+import {AppState} from "../store/configureStore";
 
-const BookPageContainer = ({requestBook, book, isFetching, error}) => {
+const BookPageContainer: React.FC<Props> = ({requestBook, book, isFetching, error}) => {
     let {bookId} = useParams();
 
     useEffect(() => {
@@ -17,10 +19,10 @@ const BookPageContainer = ({requestBook, book, isFetching, error}) => {
 
     if (isFetching || !book) return <div className={c.preloader}><Preloader/></div>;
 
-    return <BookPage volumeInfo={book.volumeInfo} isFetching={isFetching}/>
+    return <BookPage volumeInfo={book.volumeInfo} />
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppState) => {
     return {
         book: state.bookPage.book,
         isFetching: state.bookPage.isFetching,
@@ -28,4 +30,16 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {requestBook})(BookPageContainer)
+export default connect<MapStateProps, MapDispatchProps, {}, AppState>(mapStateToProps, {requestBook})(BookPageContainer)
+
+type MapStateProps = {
+    book: VolumeResource | null
+    isFetching: boolean
+    error: string | null
+}
+
+type MapDispatchProps = {
+    requestBook: (bookId: string) => void
+}
+
+type Props = MapStateProps & MapDispatchProps

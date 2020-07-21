@@ -4,10 +4,13 @@ import c from "./BookPage.module.scss";
 import useScrollToRefOnMount from "../../hooks/useScrollToRefOnMount";
 import BookPicture from "./BookPicture/BookPicture";
 import BookInfo from "./BookInfo/BookInfo";
-
+import {VolumeInfo} from "../../types/types";
 // передать только нужное в book info
+type Props = {
+    volumeInfo: VolumeInfo
+}
 
-const BookPage = ({volumeInfo}) => {
+const BookPage: React.FC<Props> = ({volumeInfo}) => {
     const sectionRef = useScrollToRefOnMount();
 
     return (

@@ -3,7 +3,12 @@ import c from "./BookPicture.module.scss";
 import coverFallback from "../../../assets/book-cover-fallback-big.png";
 import {animated, useSpring, config} from "react-spring"
 
-const BookPicture = ({imageLink}) => {
+//todo: откуда null взялся? (BookPage)
+type Props = {
+    imageLink?: string | null
+}
+
+const BookPicture: React.FC<Props> = ({imageLink}) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     const [props, set] = useSpring(() => ({ transform: "scale(1)",  config: config.wobbly}));

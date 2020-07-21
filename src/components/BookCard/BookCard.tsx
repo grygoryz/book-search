@@ -2,6 +2,7 @@ import React from "react";
 import c from "./BookCard.module.scss";
 import coverFallback from "../../assets/book-cover-fallback.png"
 import {NavLink} from "react-router-dom";
+import CommaSeparatedList from "../common/CommaSeparatedList/CommaSeparatedList";
 
 type Props = {
     title: string
@@ -19,11 +20,11 @@ const BookCard: React.FC<Props> = ({title, authors, categories, image, id}) => {
                 <img src={image ? image : coverFallback} alt=""/>
             </div>
             </NavLink>
-            {categories && <div className={c.categories}>{categories.map(c => <span>{c}</span>)}</div>}
+            {categories && <div className={c.categories}><CommaSeparatedList list={categories}/></div>}
             <NavLink className={c.title} to={`/books/${id}`}>
                 {title}
             </NavLink>
-            {authors && <div className={c.authors}>{authors.map(author => <span>{author} </span>)}</div>}
+            {authors && <div className={c.authors}><CommaSeparatedList list={authors}/></div>}
         </div>
     );
 };

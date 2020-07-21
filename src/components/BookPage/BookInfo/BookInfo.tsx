@@ -2,9 +2,15 @@ import React from "react";
 import c from "./BookInfo.module.scss"
 import Tabs from "../../common/Tabs/Tabs";
 import ButtonLink from "../../common/ButtonLink/ButtonLink";
-import {formatDimensions, separateWithCommas} from "../../../utils/formatters";
+import {formatDimensions} from "../../../utils/formatters";
+import {VolumeInfo} from "../../../types/types";
+import CommaSeparatedList from "../../common/CommaSeparatedList/CommaSeparatedList";
 
-const BookInfo = ({volumeInfo}) => {
+type Props = {
+    volumeInfo: VolumeInfo
+}
+// todo: вынести description и characteristic в компоненты
+const BookInfo: React.FC<Props> = ({volumeInfo}) => {
 
     const description = volumeInfo.description
         ? <div dangerouslySetInnerHTML={{__html: volumeInfo.description}} className={c.description}/>
@@ -20,10 +26,9 @@ const BookInfo = ({volumeInfo}) => {
 
     return (
         <div className={c.container}>
-            <div
-                className={c.category}>{volumeInfo.categories && separateWithCommas("span", volumeInfo.categories)}</div>
+            <div className={c.category}>{volumeInfo.categories && <CommaSeparatedList list={volumeInfo.categories}/>}</div>
             <h2 className={c.title}>{volumeInfo.title}</h2>
-            <div className={c.authors}>{volumeInfo.authors && separateWithCommas("span", volumeInfo.authors)}</div>
+            <div className={c.authors}>{volumeInfo.authors && <CommaSeparatedList list={volumeInfo.authors}/>}</div>
             <Tabs items={[{title: "ABOUT", content: description}, {title: "CHARACTERISTIC", content: characteristic}]}/>
             <div className={c.buttonWrapper}>
                 <ButtonLink title="Open in Google Books" link={volumeInfo.previewLink}/>

@@ -6,10 +6,10 @@ const useWindowWidth = () => {
     const [width, setWidth] = useState(getWidth());
 
     useEffect(() => {
-        let timeoutId = null;
+        let timeoutId: number | null = null;
 
         const resizeListener = () => {
-            clearTimeout(timeoutId);
+            clearTimeout(timeoutId as number);
             setTimeout(() => setWidth(getWidth()), 100)
         };
 

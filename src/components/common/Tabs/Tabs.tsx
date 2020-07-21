@@ -4,7 +4,7 @@ import cn from "classnames"
 import {animated, useTransition, config} from 'react-spring';
 
 type Props = {
-    items: Array<{title: string, content: React.ComponentType}>
+    items: Array<{title: string, content: JSX.Element}>
 }
 
 const Tabs: React.FC<Props> = ({items}) => {
