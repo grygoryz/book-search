@@ -15,7 +15,7 @@ export type VolumeInfo = {
 export type SearchingOptions = {
     searchTerms: string | null
     pageNumber?: number
-    pageSize?: number
+    pageSize: number
     sortingMethod?: string
     categories?: string
 }

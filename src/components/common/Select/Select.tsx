@@ -1,8 +1,13 @@
 import React from "react";
 import c from "./Select.module.scss"
+import {WrappedFieldProps} from "redux-form";
 
-const Select = ({value, children, title, input, ...rest}) => {
-
+type Props = {
+    value: string
+    title: string
+}
+// todo чекнуть потом
+const Select: React.FC<WrappedFieldProps & Props> = ({value, children, title, input, ...rest}) => {
     return (
         <div className={c.container}>
             <span className={c.title}>{title}</span>

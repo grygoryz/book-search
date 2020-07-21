@@ -2,7 +2,11 @@ import React from "react";
 import c from "./PopUp.module.scss";
 import {useSpring, animated, config} from "react-spring"
 
-const PopUp = ({content}) => {
+type Props = {
+    content: string
+}
+
+const PopUp: React.FC<Props> = ({content}) => {
     const props = useSpring({
         from: {
             transform: "translateY(-100%) scale(0.8)"

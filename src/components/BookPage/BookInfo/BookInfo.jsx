@@ -20,7 +20,8 @@ const BookInfo = ({volumeInfo}) => {
 
     return (
         <div className={c.container}>
-            <div className={c.category}>{volumeInfo.categories && separateWithCommas("span", volumeInfo.categories)}</div>
+            <div
+                className={c.category}>{volumeInfo.categories && separateWithCommas("span", volumeInfo.categories)}</div>
             <h2 className={c.title}>{volumeInfo.title}</h2>
             <div className={c.authors}>{volumeInfo.authors && separateWithCommas("span", volumeInfo.authors)}</div>
             <Tabs items={[{title: "ABOUT", content: description}, {title: "CHARACTERISTIC", content: characteristic}]}/>

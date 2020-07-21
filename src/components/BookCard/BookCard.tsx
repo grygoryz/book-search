@@ -3,7 +3,15 @@ import c from "./BookCard.module.scss";
 import coverFallback from "../../assets/book-cover-fallback.png"
 import {NavLink} from "react-router-dom";
 
-const BookCard = ({title, authors, categories, image, id}) => {
+type Props = {
+    title: string
+    authors?: Array<string>
+    categories?: Array<string>
+    image?: string | null
+    id: string
+}
+
+const BookCard: React.FC<Props> = ({title, authors, categories, image, id}) => {
     return (
         <div className={c.container}>
             <NavLink to={`/books/${id}`}>

@@ -4,10 +4,12 @@ import {requestNewPage} from "../actions/BooksListActions";
 import React from "react";
 import {Redirect} from "react-router-dom";
 import {hasSubmitSucceeded} from "redux-form";
+import {VolumeResource} from "../api/api";
+import {AppState} from "../store/configureStore";
 
 // разобраться с условиями. вся сложность идет из immediately history.push() after form submitting
 
-const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
+const BooksListContainer: React.FC<PropsType> = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
 
     const errorOccurred = !isFetching && !books;
 
@@ -24,15 +26,30 @@ const BooksListContainer = ({books, totalCount, isFetching, currentPage, pageSiz
     )
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppState) => {
     return {
         books: state.booksList.booksList,
         totalCount: state.booksList.totalCount,
         isFetching: state.booksList.isFetching,
         currentPage: state.booksList.currentPage,
-        pageSize: state.booksList.currentSearchingOptions.pageSize,
+        pageSize: state.booksList.currentSearchingOptions!.pageSize,
         isSearchHappened: hasSubmitSucceeded('searchForm')(state),
     }
 };
 
-export default connect(mapStateToProps, {requestNewPage})(BooksListContainer)
+export default connect<MapStateProps, MapDispatchType, {}, AppState>(mapStateToProps, {requestNewPage})(BooksListContainer)
+
+type MapStateProps = {
+    books: Array<VolumeResource> | null
+    totalCount: number
+    isFetching: boolean
+    currentPage: number
+    pageSize: number
+    isSearchHappened: boolean
+}
+
+type MapDispatchType = {
+    requestNewPage: (pageNumber: number) => void
+}
+
+type PropsType = MapStateProps & MapDispatchType

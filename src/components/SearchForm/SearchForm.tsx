@@ -1,11 +1,13 @@
 import React from "react";
 import c from "./SearchForm.module.scss";
 import Input from "../common/Input/Input";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import SearchButton from "../common/SearchButton/SearchButton";
 import Select from "../common/Select/Select";
+import {SearchingOptions} from "../../types/types";
 
-const SearchForm = ({handleSubmit}) => {
+
+const SearchForm: React.FC<InjectedFormProps<SearchingOptions | null>> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit} className={c.container}>
             <div className={c.searchWrapper}>
@@ -15,20 +17,20 @@ const SearchForm = ({handleSubmit}) => {
             <div className={c.selectorsWrapper}>
                 <Field name="categories" component={Select} title="Categories">
                     <option value="all">all</option>
-                    <option value="ART">ART</option>
-                    <option value="BIOGRAPHY">BIOGRAPHY</option>
-                    <option value="BUSINESS">BUSINESS</option>
-                    <option value="COMICS">COMICS</option>
-                    <option value="COMPUTERS">COMPUTERS</option>
-                    <option value="COOKING">COOKING</option>
-                    <option value="FICTION">FICTION</option>
-                    <option value="GARDENING">GARDENING</option>
-                    <option value="HEALTH">HEALTH & FITNESS</option>
-                    <option value="HISTORY">HISTORY</option>
-                    <option value="MEDICAL">MEDICAL</option>
-                    <option value="NATURE">NATURE</option>
-                    <option value="POETRY">POETRY</option>
-                    <option value="SCIENCE">SCIENCE</option>
+                    <option value="art">ART</option>
+                    <option value="biography">BIOGRAPHY</option>
+                    <option value="business">BUSINESS</option>
+                    <option value="comics">COMICS</option>
+                    <option value="computers">COMPUTERS</option>
+                    <option value="cooking">COOKING</option>
+                    <option value="fiction">FICTION</option>
+                    <option value="gardening">GARDENING</option>
+                    <option value="health">HEALTH & FITNESS</option>
+                    <option value="history">HISTORY</option>
+                    <option value="medical">MEDICAL</option>
+                    <option value="nature">NATURE</option>
+                    <option value="poetry">POETRY</option>
+                    <option value="science">SCIENCE</option>
                 </Field>
                 <Field name="pageSize" component={Select} title="Page size">
                     <option value="10">10</option>
@@ -45,4 +47,4 @@ const SearchForm = ({handleSubmit}) => {
     );
 };
 
-export default reduxForm({form: "searchForm"})(SearchForm);
+export default reduxForm<SearchingOptions | null>({form: "searchForm"})(SearchForm);

@@ -3,10 +3,14 @@ import c from "./Tabs.module.scss";
 import cn from "classnames"
 import {animated, useTransition, config} from 'react-spring';
 
-const Tabs = ({items}) => {
+type Props = {
+    items: Array<{title: string, content: React.ComponentType}>
+}
+
+const Tabs: React.FC<Props> = ({items}) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const openTab = idx => setActiveIndex(idx);
+    const openTab = (idx: number) => setActiveIndex(idx);
 
     const transitions = useTransition(items[activeIndex], item => item.title, {
         from: {opacity: 0, position: "absolute", transform: "scale(0.95)"},

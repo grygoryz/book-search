@@ -4,8 +4,18 @@ import BookCard from "../BookCard/BookCard";
 import Paginator from "../common/Paginator/Paginator";
 import Preloader from "../common/Preloader/Preloader";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import {VolumeResource} from "../../api/api";
 
-const BookList = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
+type Props = {
+    books: Array<VolumeResource> | null
+    totalCount: number
+    isFetching: boolean
+    currentPage: number
+    pageSize: number
+    requestNewPage: (pageNumber: number) => void
+}
+
+const BookList: React.FC<Props> = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage}) => {
     const width = useWindowWidth();
 
     if (isFetching) return <div className={c.loader}><Preloader/></div>;
@@ -17,7 +27,7 @@ const BookList = ({books, totalCount, isFetching, currentPage, pageSize, request
             </div>
             <div>
                 <div className={c.grid}>
-                    {books.map(({volumeInfo, id}) => {
+                    {books && books.map(({volumeInfo, id}) => {
                         return <div key={id} className={c.wrapper}>
                             <BookCard title={volumeInfo.title}
                                       authors={volumeInfo.authors}
