@@ -6,8 +6,7 @@ import SearchButton from "../common/SearchButton/SearchButton";
 import Select from "../common/Select/Select";
 import {SearchingOptions} from "../../types/types";
 
-
-const SearchForm: React.FC<InjectedFormProps<SearchingOptions | null>> = ({handleSubmit}) => {
+const SearchForm: React.FC<InjectedFormProps<SearchingOptions>> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit} className={c.container}>
             <div className={c.searchWrapper}>
@@ -47,4 +46,4 @@ const SearchForm: React.FC<InjectedFormProps<SearchingOptions | null>> = ({handl
     );
 };
 
-export default reduxForm<SearchingOptions | null>({form: "searchForm"})(SearchForm);
+export default reduxForm<SearchingOptions>({form: "searchForm"})(SearchForm);

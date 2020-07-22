@@ -6,7 +6,7 @@ type Props = {
     value: string
     title: string
 }
-// todo чекнуть потом
+
 const Select: React.FC<WrappedFieldProps & Props> = ({value, children, title, input, ...rest}) => {
     return (
         <div className={c.container}>

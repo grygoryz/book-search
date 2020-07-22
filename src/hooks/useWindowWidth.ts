@@ -9,7 +9,7 @@ const useWindowWidth = () => {
         let timeoutId: number | null = null;
 
         const resizeListener = () => {
-            clearTimeout(timeoutId as number);
+            clearTimeout(timeoutId!);
             setTimeout(() => setWidth(getWidth()), 100)
         };
 

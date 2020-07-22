@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import c from "./BookPicture.module.scss";
-import coverFallback from "../../../assets/book-cover-fallback-big.png";
+import coverFallback from "../../../assets/pictures/book-cover-fallback-big.png";
 import {animated, useSpring, config} from "react-spring"
 
 //todo: откуда null взялся? (BookPage)

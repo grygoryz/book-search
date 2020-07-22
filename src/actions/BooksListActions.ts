@@ -12,7 +12,7 @@ export const FETCH_NEW_PAGE_FAILURE = "FETCH_NEW_PAGE_FAILURE";
 
 export const BooksListActions = {
     fetchBooks: () => ({type: FETCH_BOOKS} as const),
-    fetchBooksSuccess: (options: SearchingOptions | null,
+    fetchBooksSuccess: (options: SearchingOptions,
                         totalCount: number,
                         books: Array<VolumeResource> | null) => ({type: FETCH_BOOKS_SUCCESS, options, totalCount, books} as const),
     fetchBooksFailure: () => ({type: FETCH_BOOKS_FAILURE} as const),
@@ -30,7 +30,7 @@ export const requestBooks = (options: SearchingOptions): Thunk => async dispatch
         if (response.totalItems > 0){
             dispatch(BooksListActions.fetchBooksSuccess(options, response.totalItems, response.items))
         } else {
-            dispatch(BooksListActions.fetchBooksSuccess(null, 0, null))
+            dispatch(BooksListActions.fetchBooksSuccess(options, 0, null))
         }
     } catch (e) {
         dispatch(BooksListActions.fetchBooksFailure());

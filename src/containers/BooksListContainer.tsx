@@ -7,9 +7,8 @@ import {hasSubmitSucceeded} from "redux-form";
 import {VolumeResource} from "../api/api";
 import {AppState} from "../store/configureStore";
 
-// разобраться с условиями. вся сложность идет из immediately history.push() after form submitting
-
-const BooksListContainer: React.FC<PropsType> = ({books, totalCount, isFetching, currentPage, pageSize, requestNewPage, isSearchHappened}) => {
+const BooksListContainer: React.FC<PropsType> = ({books, totalCount, isFetching,
+                                                     currentPage, pageSize, requestNewPage, isSearchHappened}) => {
 
     const errorOccurred = !isFetching && !books;
 
@@ -26,14 +25,13 @@ const BooksListContainer: React.FC<PropsType> = ({books, totalCount, isFetching,
     )
 };
 
-// todo: pageSize is possibly null
 const mapStateToProps = (state: AppState) => {
     return {
         books: state.booksList.booksList,
         totalCount: state.booksList.totalCount,
         isFetching: state.booksList.isFetching,
         currentPage: state.booksList.currentPage,
-        pageSize: state.booksList.currentSearchingOptions!.pageSize,
+        pageSize: state.booksList.currentSearchingOptions.pageSize,
         isSearchHappened: hasSubmitSucceeded('searchForm')(state),
     }
 };

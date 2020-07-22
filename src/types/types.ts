@@ -11,11 +11,11 @@ export type VolumeInfo = {
     language: string
     previewLink: string
 }
-// мб убрать ? везде
+
 export type SearchingOptions = {
     searchTerms: string | null
-    pageNumber?: number
+    pageNumber: number
     pageSize: number
-    sortingMethod?: string
-    categories?: string
+    sortingMethod: string
+    categories: string
 }

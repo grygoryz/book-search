@@ -9,9 +9,8 @@ import {SearchingOptions} from "../types/types";
 const SearchFormContainer: React.FC<Props> = ({requestBooks, searchingOptions}) => {
     const history = useHistory();
 
-    const onSubmit = (formData: SearchingOptions | null) => {
-        // todo подумать над этим случаем. Убрать null
-        if (formData?.searchTerms) {
+    const onSubmit = (formData: SearchingOptions) => {
+        if (formData.searchTerms) {
             requestBooks(formData);
             history.push("/books")
         }
@@ -29,7 +28,7 @@ const mapStateToProps = (state: AppState) => {
 export default connect<MapStateProps, MapDispatchProps, {}, AppState>(mapStateToProps, {requestBooks})(SearchFormContainer)
 
 type MapStateProps = {
-    searchingOptions: SearchingOptions | null
+    searchingOptions: SearchingOptions
 }
 
 type MapDispatchProps = {

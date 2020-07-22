@@ -2,7 +2,6 @@ import React from "react";
 import c from "./Input.module.scss";
 import {WrappedFieldProps} from "redux-form";
 
-// todo прочекать
 const Input: React.FC<WrappedFieldProps> = ({input, ...props}) => {
     return (
         <div className={c.container}>

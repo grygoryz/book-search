@@ -19,7 +19,7 @@ const BookPageContainer: React.FC<Props> = ({requestBook, book, isFetching, erro
 
     if (isFetching || !book) return <div className={c.preloader}><Preloader/></div>;
 
-    return <BookPage volumeInfo={book.volumeInfo} />
+    return <BookPage volumeInfo={book.volumeInfo}/>
 };
 
 const mapStateToProps = (state: AppState) => {

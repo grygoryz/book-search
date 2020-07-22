@@ -2,7 +2,7 @@ import axios from "axios";
 import {VolumeInfo, SearchingOptions} from "../types/types";
 
 const DEFAULT_PARAMS = {
-    key: "AIzaSyCkuPTEjXKJrXhF9XXXj4oT1LizxRtkse8"
+    key: "AIzaSyDc25tuyICvu7cjAzeU81MvmaDzDDQI_eU"
 };
 
 const instance = axios.create({
@@ -10,9 +10,7 @@ const instance = axios.create({
 });
 
 export const googleBooksAPI = {
-    getBooksList(options: SearchingOptions) {
-        const {searchTerms, pageNumber = 1, pageSize = 10, sortingMethod = "relevance", categories = "all"} = options;
-
+    getBooksList({searchTerms, pageNumber, pageSize, sortingMethod, categories}: SearchingOptions) {
         const startIndex = (pageNumber - 1) * pageSize;
 
         const params = {

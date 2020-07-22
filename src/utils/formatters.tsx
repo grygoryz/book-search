@@ -1,5 +1,3 @@
-import React from "react";
-
 type Dimensions = { height?: string; width?: string; thickness?: string }
 
 export const formatDimensions = (data: Dimensions) => {

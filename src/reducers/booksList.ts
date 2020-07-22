@@ -10,16 +10,6 @@ import {
 import {VolumeResource} from "../api/api";
 import {SearchingOptions} from "../types/types";
 
-// export const Categories = [{label: "all", value: "all"}, {label: "ART", value: "art"}, {label: "BIOGRAPHY", value: "biography"},
-//     {label: "BUSINESS", value: "business"}, {label: "COMICS", value: "comics"}, {label: "COMPUTERS", value: "computers"},
-//     {label: "COOKING", value: "cooking"}, {label: "FICTION", value: "fiction"}, {label: "GARDENING", value: "gardening"},
-//     {label: "HEALTH", value: "health"}, {label: "HISTORY", value: "history"}, {label: "MEDICAL", value: "medical"},
-//     {label: "NATURE", value: "nature"}, {label: "POETRY", value: "poetry"}, {label: "SCIENCE", value: "science"}];
-//
-// export const PageSizes = [10, 20, 30, 40];
-//
-// export const SortingMethods = ["relevance", "newest"];
-
 const initialState = {
     booksList: null as Array<VolumeResource> | null,
     totalCount: 0,
@@ -27,18 +17,18 @@ const initialState = {
     isFetching: false,
     currentSearchingOptions: {
         searchTerms: null,
+        pageNumber: 1,
         pageSize: 10,
-        category: "all",
+        categories: "all",
         sortingMethod: "relevance"
-    } as SearchingOptions | null,
+    } as SearchingOptions,
     error: null
 };
 
 export const booksListReducer = (state = initialState, action: ActionsType): State => {
-    switch(action.type) {
+    switch (action.type) {
         case FETCH_BOOKS:
-        case FETCH_NEW_PAGE:
-        {
+        case FETCH_NEW_PAGE: {
             return {...state, isFetching: true}
         }
         case FETCH_BOOKS_SUCCESS: {

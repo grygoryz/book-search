@@ -8,11 +8,11 @@ const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunkMiddleware)
 ));
 
+export default store;
+
 export type AppState = ReturnType<typeof rootReducer>;
 
 export type InferredActionTypes<T> = T extends {[key: string]: (...args: any[]) => infer U} ? U : never
 
 export type BaseThunkType<A extends Action, R = void> = ThunkAction<R, AppState, unknown, A>
-
-export default store;
 
