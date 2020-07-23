@@ -6,18 +6,21 @@ import {Redirect} from "react-router-dom";
 import {hasSubmitSucceeded} from "redux-form";
 import {VolumeResource} from "../api/api";
 import {AppState} from "../store/configureStore";
+import c from "../components/BooksList/BooksList.module.scss";
+import Preloader from "../components/common/Preloader/Preloader";
 
 const BooksListContainer: React.FC<PropsType> = ({books, totalCount, isFetching,
                                                      currentPage, pageSize, requestNewPage, isSearchHappened}) => {
 
-    const errorOccurred = !isFetching && !books;
+    if (isFetching) return <div className={c.loader}><Preloader/></div>;
 
+
+    const errorOccurred = !isFetching && books === null;
     if (!isSearchHappened || errorOccurred) return <Redirect to="/"/>;
 
     return (
         <BooksList books={books}
                    totalCount={totalCount}
-                   isFetching={isFetching}
                    currentPage={currentPage}
                    pageSize={pageSize}
                    requestNewPage={requestNewPage}

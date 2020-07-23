@@ -46,7 +46,7 @@ export const booksListReducer = (state = initialState, action: ActionsType): Sta
         }
         case FETCH_BOOKS_FAILURE:
         case FETCH_NEW_PAGE_FAILURE: {
-            return {...state, isFetching: false}
+            return {...state, isFetching: false, booksList: null}
         }
         default:
             return state;

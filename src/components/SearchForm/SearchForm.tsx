@@ -10,7 +10,7 @@ const SearchForm: React.FC<InjectedFormProps<SearchingOptions>> = ({handleSubmit
     return (
         <form onSubmit={handleSubmit} className={c.container}>
             <div className={c.searchWrapper}>
-                <Field name="searchTerms" component={Input} placeholder={"Search..."}/>
+                <Field  name="searchTerms" component={Input} placeholder={"Search..."}/>
                 <SearchButton/>
             </div>
             <div className={c.selectorsWrapper}>

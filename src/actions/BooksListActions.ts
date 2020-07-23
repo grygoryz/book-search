@@ -26,12 +26,7 @@ export const requestBooks = (options: SearchingOptions): Thunk => async dispatch
 
     try {
         const response = await googleBooksAPI.getBooksList(options);
-
-        if (response.totalItems > 0){
-            dispatch(BooksListActions.fetchBooksSuccess(options, response.totalItems, response.items))
-        } else {
-            dispatch(BooksListActions.fetchBooksSuccess(options, 0, null))
-        }
+        dispatch(BooksListActions.fetchBooksSuccess(options, response.totalItems, response.items))
     } catch (e) {
         dispatch(BooksListActions.fetchBooksFailure());
         dispatch(handleError(e))

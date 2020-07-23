@@ -26,6 +26,10 @@
   &:hover{
     background: #e4e4e4;
   }
+
+  @media (max-width: 450px) {
+    margin-right: 4px;
+  }
 }
 
 .page, .button{
