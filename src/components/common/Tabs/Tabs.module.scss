@@ -23,9 +23,10 @@
     transition: .3s;
   }
 
-  &:hover, &_active{
+  &:hover, &_active {
     opacity: 1;
-    &:after{
+
+    &:after {
       width: 100%;
       left: 0;
     }

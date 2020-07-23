@@ -5,11 +5,11 @@
     border: none;
     height: 100%;
 
-    & svg{
+    & svg {
       transition: 0.2s;
     }
 
-    &:hover svg{
+    &:hover svg {
       opacity: 0.6;
     }
   }
