@@ -1,3 +1,11 @@
+# book-search
+
+Book searching app created using React JS and integrated with Google Books API. This app allows users to search for books and get more detailed information about each of them. 
+
+Link to deployed app: https://book-search-865d1.web.app/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
