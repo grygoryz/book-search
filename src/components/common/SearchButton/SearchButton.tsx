@@ -1,6 +1,6 @@
 import React from "react";
 import c from "./SearchButton.module.scss";
-import {ReactComponent as SearchButtonIcon} from "../../../assets/icons/icons8-search.svg";
+import {ReactComponent as SearchButtonIcon} from "../../../assets/icons/search-icon.svg";
 
 const SearchButton = () => {
     return <div className={c.container}>

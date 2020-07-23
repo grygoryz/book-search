@@ -20,7 +20,7 @@ const Tabs: React.FC<Props> = ({items}) => {
     });
 
     return (
-        <div className={c.tab}>
+        <div>
             {items.map((item, idx) => (
                 <button key={idx}
                         className={cn(c.btn, {[c.btn_active]: idx === activeIndex})}

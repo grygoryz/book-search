@@ -14,5 +14,4 @@ const CommaSeparatedList: React.FC<Props> = ({list}) => {
     );
 };
 
-
 export default CommaSeparatedList
